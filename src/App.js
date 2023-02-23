@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="title">
+        <h1>Drum Machine</h1>
+      </div>
+      <div id="drum-machine">
+        <div id="display">
+          <div className="drum-pad">
+            <button>Q</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>W</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>E</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>A</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>S</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>D</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>Z</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>X</button>
+            <audio src=""></audio>
+          </div>
+          <div className="drum-pad">
+            <button>C</button>
+            <audio src=""></audio>
+          </div>
+        </div>
+        <div id="controls-box">hola</div>
+      </div>
     </div>
   );
 }
