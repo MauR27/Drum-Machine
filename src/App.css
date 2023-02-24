@@ -37,7 +37,8 @@ body {
   margin-top: 40px;
 }
 
-button {
+button,
+audio {
   height: 85px;
   width: 85px;
   border: none;
