@@ -2,15 +2,39 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const onClickEvent = (e) => {
-    const targetValue = e.target.value;
-    const Q = document.getElementById(targetValue);
-    Q.currentTime = "0";
-    Q.play();
+  const [displayText, setDisplayText] = useState("");
+
+  let soundEffects = {
+    q: "Bass",
+    w: "Crash",
+    e: "Floor Tom",
+    a: "Hit-Hat Close",
+    s: "Hit-Hat Open",
+    d: "Med Tom",
+    z: "Ride",
+    x: "Small Tom",
+    c: "Snare",
   };
 
-  document.addEventListener("keyup", function (e) {
-    const ka = e.key;
+  // agregar sonido con los botones
+
+  const onClickEvent = (e) => {
+    const targetValue = e.target.value;
+    const targetId = document.getElementById(targetValue);
+
+    setDisplayText(soundEffects[targetValue]);
+    targetId.currentTime = "0";
+    targetId.play();
+  };
+
+  //  agregar sonido con en teclado
+
+  document.addEventListener("keydown", function (e) {
+    const targetValue = e.key;
+    const targetId = document.getElementById(targetValue);
+
+    setDisplayText(soundEffects[targetValue]);
+    console.log(targetId);
     if (
       e.key === "q" ||
       e.key === "w" ||
@@ -22,9 +46,8 @@ function App() {
       e.key === "x" ||
       e.key === "c"
     ) {
-      const q = document.getElementById(ka);
-      q.currentTime = "0";
-      q.play();
+      targetId.currentTime = "0";
+      targetId.play();
     }
   });
 
@@ -84,7 +107,7 @@ function App() {
           </div>
         </div>
         <div id="controls-box">
-          <h2>Snare</h2>
+          <h2>{displayText}</h2>
         </div>
       </div>
     </div>
