@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [displayText, setDisplayText] = useState("");
+  const [displayText, setDisplayText] = useState("ROCK MODE");
+  const [onOff, setOnOff] = useState(true);
+  const [textOnOff, setTextOnOff] = useState("OFF");
+
+  const [rockEffects, setRockEffects] = useState("");
 
   let soundEffects = {
     q: "Bass",
@@ -16,47 +20,52 @@ function App() {
     c: "Snare",
   };
 
-  // agregar sonido con los botones
+  const eventClick = () => {
+    setOnOff((prev) => !prev);
+    setDisplayText("");
+
+    if (onOff) {
+      setTextOnOff("ON");
+    } else {
+      setTextOnOff("OFF");
+    }
+  };
+
+  // AGREGAR SONIDO CON LOS BOTONES
 
   const onClickEvent = (e) => {
     const targetValue = e.target.value;
     const targetId = document.getElementById(targetValue);
-
-    setDisplayText(soundEffects[targetValue]);
-    targetId.currentTime = "0";
-    targetId.play();
+    if (!onOff) {
+      setDisplayText(soundEffects[targetValue]);
+      targetId.pause();
+      targetId.currentTime = 0;
+      targetId.play();
+    } else {
+      setDisplayText("TURN ON!");
+    }
   };
 
-  //  agregar sonido con en teclado
+  //  AGREGAR SONIDO CON EL TECLADO
 
-  document.addEventListener("keydown", function (e) {
+  const keyChange = (e) => {
     const targetValue = e.key;
     const targetId = document.getElementById(targetValue);
-
-    setDisplayText(soundEffects[targetValue]);
-    console.log(targetId);
-    if (
-      e.key === "q" ||
-      e.key === "w" ||
-      e.key === "e" ||
-      e.key === "a" ||
-      e.key === "s" ||
-      e.key === "d" ||
-      e.key === "z" ||
-      e.key === "x" ||
-      e.key === "c"
-    ) {
-      targetId.currentTime = "0";
+    if (!onOff) {
+      setDisplayText(soundEffects[targetValue]);
+      targetId.pause();
+      targetId.currentTime = 0;
       targetId.play();
+    } else {
+      setDisplayText("TURN ON!");
     }
-  });
+  };
+
+  // RENDERIZADO DE COMPONENTES
 
   return (
     <div className="App">
-      <div className="title">
-        <h1>Drum Machine</h1>
-      </div>
-      <div id="drum-machine">
+      <div id="drum-machine" onKeyDown={keyChange}>
         <div id="display">
           <div className="drum-pad">
             <button id="bass" onClick={onClickEvent} value="q">
@@ -106,8 +115,24 @@ function App() {
             </button>
           </div>
         </div>
-        <div id="controls-box">
-          <h2>{displayText}</h2>
+        <div id="container-display">
+          <div className="effect">
+            <h2>{displayText}</h2>
+          </div>
+          <div className="volumen">
+            <input type="range" />
+            <h3>Volumen</h3>
+          </div>
+          <label className="switch">
+            <input type="checkbox" id="toggle" />
+            <span className="slider round"></span>
+            <p>toggle</p>
+          </label>
+          <label className="switch">
+            <input type="checkbox" onClick={eventClick} />
+            <span className="slider round"></span>
+            <p>{textOnOff}</p>
+          </label>
         </div>
       </div>
     </div>
