@@ -5,6 +5,7 @@ function App() {
   const [displayText, setDisplayText] = useState("ROCK MODE");
   const [onOff, setOnOff] = useState(true);
   const [textOnOff, setTextOnOff] = useState("OFF");
+  const [volumenText, setVolumenText] = useState(50);
 
   const [onOffToggle, setOnOffToggle] = useState(true);
   const [urlToggle, setUrlToggle] = useState("rock");
@@ -19,6 +20,11 @@ function App() {
     z: "Ride",
     x: "Small Tom",
     c: "Snare",
+  };
+
+  const onChange = (e) => {
+    const a = e.target.value;
+    setVolumenText(a);
   };
 
   const eventClick = () => {
@@ -46,6 +52,7 @@ function App() {
     console.log(onOffToggle);
     console.log();
   };
+
   // AGREGAR SONIDO CON LOS BOTONES
 
   const onClickEvent = (e) => {
@@ -55,6 +62,7 @@ function App() {
 
     const volumen = vol.value / 100;
     targetId.volume = volumen;
+    console.log();
     if (!onOff) {
       setDisplayText(soundEffects[targetValue]);
       targetId.currentTime = 0;
@@ -184,8 +192,14 @@ function App() {
             <h2>{displayText}</h2>
           </div>
           <div className="volumen">
-            <input type="range" id="vol" max="100" min="0" />
-            <h3>Volumen</h3>
+            <input
+              type="range"
+              id="vol"
+              max="100"
+              min="0"
+              onChange={onChange}
+            />
+            <h3>volumen: {volumenText}</h3>
           </div>
           <label className="switch">
             <input type="checkbox" id="toggle" onClick={eventToggle} />
