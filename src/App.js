@@ -51,9 +51,12 @@ function App() {
   const onClickEvent = (e) => {
     const targetValue = e.target.value;
     const targetId = document.getElementById(targetValue);
+    const vol = document.getElementById("vol");
+
+    const volumen = vol.value / 100;
+    targetId.volume = volumen;
     if (!onOff) {
       setDisplayText(soundEffects[targetValue]);
-      targetId.pause();
       targetId.currentTime = 0;
       targetId.play();
     } else {
@@ -66,9 +69,12 @@ function App() {
   const keyChange = (e) => {
     const targetValue = e.key;
     const targetId = document.getElementById(targetValue);
+    const vol = document.getElementById("vol");
+
+    const volumen = vol.value / 100;
+    targetId.volume = volumen;
     if (!onOff) {
       setDisplayText(soundEffects[targetValue]);
-      targetId.pause();
       targetId.currentTime = 0;
       targetId.play();
     } else {
@@ -178,7 +184,7 @@ function App() {
             <h2>{displayText}</h2>
           </div>
           <div className="volumen">
-            <input type="range" min="0" max="100" id="vol" />
+            <input type="range" id="vol" max="100" min="0" />
             <h3>Volumen</h3>
           </div>
           <label className="switch">
