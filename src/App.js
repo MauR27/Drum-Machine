@@ -192,6 +192,7 @@ function App() {
             <h2>{displayText}</h2>
           </div>
           <div className="volumen">
+            <h4>{volumenText}</h4>
             <input
               type="range"
               id="vol"
@@ -199,7 +200,7 @@ function App() {
               min="0"
               onChange={onChange}
             />
-            <h3>volumen: {volumenText}</h3>
+            <h3>volumen</h3>
           </div>
           <label className="switch">
             <input type="checkbox" id="toggle" onClick={eventToggle} />

@@ -59,7 +59,7 @@ button:hover {
 }
 
 .effect {
-  height: 140px;
+  height: 110px;
   margin-top: 20px;
 }
 .effect h2 {
@@ -74,9 +74,14 @@ button:hover {
 }
 
 .volumen {
-  height: 80px;
+  height: 101px;
   font-family: "Source Code Pro", monospace;
   font-size: 15px;
+}
+
+.volumen h4 {
+  font-size: 16px;
+  padding-bottom: 5px;
 }
 
 p {
